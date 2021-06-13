@@ -8,11 +8,15 @@
 class Field : public Entity {
 private:
 	Tale*** tales;
+	sf::Vector2i activeTale;
+
 
 public:
 	Field(sf::RenderWindow* window, sf::Vector2f position, const sf::Texture& texture, const sf::Texture& talesTexture)
 		: Entity(window, position, texture)
 	{
+		activeTale = { -1, -1 };
+
 		tales = new Tale * *[FIELD_LENGTH];
 		for (int i = 0; i < FIELD_LENGTH; i++) {
 			tales[i] = new Tale * [FIELD_LENGTH];
@@ -23,6 +27,6 @@ public:
 	}
 
 	void draw();
-	void processMouseClick(sf::Vector2i mousePosition, TaleType activeTale);
+	void processMouseClick(sf::Vector2i mousePosition, TaleType baseActiveTale);
 };
 

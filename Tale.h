@@ -6,7 +6,8 @@
 
 class Tale : public Entity {
 private:
-	bool isActive;
+	bool active;
+
 public:
 	Tale(sf::RenderWindow* window, sf::Vector2f position, const sf::Texture& texture, TaleType taleType)
 		: Entity(window, position, texture)
@@ -15,8 +16,9 @@ public:
 	}
 
 	void draw();
-	bool processMouseClick(sf::Vector2i mousePosition);
+	bool contains(sf::Vector2i mousePosition);
 	void highlight(bool state);
 	void setTale(TaleType tale);
+	bool isActive();
 };
 

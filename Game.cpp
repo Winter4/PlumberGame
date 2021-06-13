@@ -12,7 +12,7 @@ Game::Game() : window(sf::VideoMode(1400, 900), "PLUMBER")
 {
 	loadAssets();
 	window.setFramerateLimit(60);
-	activeTale = TaleType::NONE;
+	baseActiveTale = TaleType::NONE;
 
 	background.setTexture(texturesHolder.get(Textures::Background));
 	field = new Field(&window, { 440, 15 }, texturesHolder.get(Textures::Field), texturesHolder.get(Textures::Tales));
@@ -43,12 +43,12 @@ void Game::processEvents()
 
 	case sf::Event::MouseButtonPressed:
 		if (event.key.code == sf::Mouse::Left) {
-			if (activeTale != TaleType::NONE) 
-				field->processMouseClick(sf::Mouse::getPosition(window), activeTale);
+			//if (activeTale != TaleType::NONE) 
+			field->processMouseClick(sf::Mouse::getPosition(window), baseActiveTale);
 			
-			activeTale = TaleType::NONE;
+			baseActiveTale = TaleType::NONE;
 			if (base->getRect().contains(sf::Vector2f(sf::Mouse::getPosition(window)))) 
-				activeTale = base->processMouseClick(sf::Mouse::getPosition(window));
+				baseActiveTale = base->processMouseClick(sf::Mouse::getPosition(window));
 		}
 		break;
 	}
@@ -56,8 +56,8 @@ void Game::processEvents()
 
 void Game::update()
 {
-	base->highlightTale(activeTale);
-	std::cout << activeTale;
+	base->highlightTale(baseActiveTale);
+	std::cout << baseActiveTale;
 }
 
 void Game::render()

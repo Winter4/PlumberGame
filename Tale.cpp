@@ -2,26 +2,26 @@
 
 void Tale::draw()
 {
-	if (isActive) Entity::draw();
+	if (active) Entity::draw();
 }
 
-bool Tale::processMouseClick(sf::Vector2i mousePosition)
+bool Tale::contains(sf::Vector2i mousePosition)
 {
 	return sprite.getGlobalBounds().contains(sf::Vector2f(mousePosition));
 }
 
 void Tale::highlight(bool state)
 {
-	if (state) sprite.setColor(sf::Color::Black);
+	if (state) sprite.setColor(sf::Color::Green);
 	else sprite.setColor(sf::Color::White);
 }
 
 void Tale::setTale(TaleType tale)
 {
-	isActive = true;
+	active = true;
 	switch (tale) {
 	case TaleType::NONE:
-		isActive = false;
+		active = false;
 		sprite.setTextureRect(sf::IntRect(0, 0, TALE_SIZE, TALE_SIZE));
 		break;
 
@@ -42,3 +42,5 @@ void Tale::setTale(TaleType tale)
 		break;
 	}
 }
+
+bool Tale::isActive() { return active; }

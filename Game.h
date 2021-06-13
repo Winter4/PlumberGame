@@ -17,7 +17,7 @@ private:
 	Field* field;
 	TalesBase* base;
 
-	TaleType activeTale;
+	TaleType baseActiveTale;
 
 public:
 	Game();

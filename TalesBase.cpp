@@ -14,7 +14,7 @@ TaleType TalesBase::processMouseClick(sf::Vector2i mousePosition)
 	if (activeTale != TaleType::NONE) tales[activeTale - 1]->highlight(false);
 
 	for (int i = 0; i < TALES_NUMBER; i++)
-		if (tales[i]->processMouseClick(mousePosition)) 
+		if (tales[i]->contains(mousePosition)) 
 			activeTale = TaleType(i + 1);
 	
 	return activeTale;
