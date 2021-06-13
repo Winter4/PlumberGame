@@ -17,7 +17,12 @@ private:
 	Field* field;
 	TalesBase* base;
 
+	sf::Sprite entrance;
+	sf::Sprite exit;
+
+	int enter;
 	TaleType baseActiveTale;
+	bool gameOver;
 
 public:
 	Game();

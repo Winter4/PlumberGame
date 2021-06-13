@@ -28,5 +28,6 @@ public:
 
 	void draw();
 	void processMouseClick(sf::Vector2i mousePosition, TaleType baseActiveTale);
+	bool flowWater(int enter);
 };
 

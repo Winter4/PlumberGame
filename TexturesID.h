@@ -5,7 +5,8 @@ namespace Textures {
 		Background,
 		Field,
 		Tales,
-		TalesBase
+		TalesBase,
+		Arrow
 	};
 }
 
@@ -15,4 +16,11 @@ namespace Textures {
 		Angle,
 		T,
 		X
+	};
+
+	enum Side {
+		Left,
+		Top,
+		Right,
+		Bot
 	};

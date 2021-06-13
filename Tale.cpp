@@ -22,30 +22,49 @@ void Tale::setTale(TaleType tale)
 	switch (tale) {
 	case TaleType::NONE:
 		active = false;
+		exits[0][0] = 0;
+		exits[0][1] = 0;
+		exits[1][0] = 0;
+		exits[1][1] = 0;
 		sprite.setTextureRect(sf::IntRect(0, 0, TALE_SIZE, TALE_SIZE));
 		break;
 
 	case TaleType::Straight:
 		sprite.setTextureRect(sf::IntRect(0, 0, TALE_SIZE, TALE_SIZE));
+		exits[0][0] = 1;
+		exits[0][1] = 0;
+		exits[1][0] = 0;
+		exits[1][1] = 1;
 		break;
 
 	case TaleType::Angle:
 		sprite.setTextureRect(sf::IntRect(TALE_SIZE, 0, TALE_SIZE, TALE_SIZE));
+		exits[0][0] = 1;
+		exits[0][1] = 1;
+		exits[1][0] = 0;
+		exits[1][1] = 0;
 		break;
 
 	case TaleType::X:
 		sprite.setTextureRect(sf::IntRect(TALE_SIZE * 2, 0, TALE_SIZE, TALE_SIZE));
+		exits[0][0] = 1;
+		exits[0][1] = 1;
+		exits[1][0] = 1;
+		exits[1][1] = 1;
 		break;
 
 	case TaleType::T:
 		sprite.setTextureRect(sf::IntRect(TALE_SIZE * 3, 0, TALE_SIZE, TALE_SIZE));
+		exits[0][0] = 1;
+		exits[0][1] = 0;
+		exits[1][0] = 1;
+		exits[1][1] = 1;
 		break;
 	}
 
 	sf::FloatRect rect = sprite.getLocalBounds();
 	sprite.setOrigin(rect.left + rect.width / 2.f, rect.top + rect.height / 2.f);
 	rect = sprite.getLocalBounds();
-	//sprite.setPosition(sprite.getPosition() + sf::Vector2f(rect.width / 2.f, rect.height / 2.f));
 }
 
 bool Tale::isActive() { return active; }
@@ -53,4 +72,37 @@ bool Tale::isActive() { return active; }
 void Tale::rotate()
 {
 	sprite.rotate(90.f);
+
+	int tmp;
+	tmp = exits[0][0];
+
+	exits[0][0] = exits[1][0];
+	exits[1][0] = exits[1][1];
+	exits[1][1] = exits[0][1];
+	exits[0][1] = tmp;
+}
+
+bool Tale::connected(Side side)
+{
+	bool result = false;
+
+	switch (side) {
+	case Side::Left:
+		if (exits[0][0]) result = true;
+		break;
+
+	case Side::Top:
+		if (exits[0][1]) result = true;
+		break;
+
+	case Side::Right:
+		if (exits[1][1]) result = true;
+		break;
+
+	case Side::Bot:
+		if (exits[1][0]) result = true;
+		break;
+	}
+
+	return result;
 }
