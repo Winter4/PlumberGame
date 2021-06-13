@@ -22,7 +22,7 @@ public:
 			tales[i] = new Tale * [FIELD_LENGTH];
 
 			for (int j = 0; j < FIELD_LENGTH; j++)
-				tales[i][j] = new Tale(window, position + sf::Vector2f(23 + TALE_SIZE * j, 25 + TALE_SIZE * i), talesTexture, TaleType::NONE);
+				tales[i][j] = new Tale(window, position + sf::Vector2f(23 + TALE_SIZE * j + TALE_SIZE / 2.f, 25 + TALE_SIZE * i + TALE_SIZE / 2.f), talesTexture, TaleType::NONE);
 		}
 	}
 

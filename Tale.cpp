@@ -41,6 +41,16 @@ void Tale::setTale(TaleType tale)
 		sprite.setTextureRect(sf::IntRect(TALE_SIZE * 3, 0, TALE_SIZE, TALE_SIZE));
 		break;
 	}
+
+	sf::FloatRect rect = sprite.getLocalBounds();
+	sprite.setOrigin(rect.left + rect.width / 2.f, rect.top + rect.height / 2.f);
+	rect = sprite.getLocalBounds();
+	//sprite.setPosition(sprite.getPosition() + sf::Vector2f(rect.width / 2.f, rect.height / 2.f));
 }
 
 bool Tale::isActive() { return active; }
+
+void Tale::rotate()
+{
+	sprite.rotate(90.f);
+}

@@ -20,5 +20,6 @@ public:
 	void highlight(bool state);
 	void setTale(TaleType tale);
 	bool isActive();
+	void rotate();
 };
 
