@@ -2,34 +2,21 @@
 #include "Entity.h"
 #include "TexturesID.h"
 
+#define TALE_SIZE 83
+
 class Tale : public Entity {
 private:
-
+	bool isActive;
 public:
 	Tale(sf::RenderWindow* window, sf::Vector2f position, const sf::Texture& texture, TaleType taleType)
 		: Entity(window, position, texture)
 	{
-		switch (taleType) {
-		case TaleType::Straight:
-			sprite.setTextureRect(sf::IntRect(0, 0, 83, 83));
-			break;
-
-		case TaleType::Angle:
-			sprite.setTextureRect(sf::IntRect(83, 0, 83, 83));
-			break;
-
-		case TaleType::T:
-			sprite.setTextureRect(sf::IntRect(166, 0, 83, 83));
-			break;
-
-		case TaleType::X:
-			sprite.setTextureRect(sf::IntRect(249, 0, 83, 83));
-			break;
-		}
+		setTale(taleType);
 	}
 
 	void draw();
 	bool processMouseClick(sf::Vector2i mousePosition);
 	void highlight(bool state);
+	void setTale(TaleType tale);
 };
 
