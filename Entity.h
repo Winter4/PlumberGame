@@ -7,8 +7,8 @@ protected:
 	sf::Sprite sprite;
 
 public:
-	Entity(sf::RenderWindow* windowToLink, sf::Vector2f position);
+	Entity(sf::RenderWindow* window, sf::Vector2f position, const sf::Texture& texture);
 
-	void draw();
+	void virtual draw();
 };
 

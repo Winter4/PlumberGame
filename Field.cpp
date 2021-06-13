@@ -2,5 +2,5 @@
 
 void Field::draw()
 {
-	window->draw(sprite);
+	Entity::draw();
 }

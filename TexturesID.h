@@ -3,6 +3,16 @@
 namespace Textures {
 	enum ID {
 		Background,
-		Field
+		Field,
+		Tales,
+		TalesBase
 	};
 }
+
+	enum TaleType {
+		NONE,
+		Straight,
+		Angle,
+		T,
+		X
+	};

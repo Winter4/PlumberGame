@@ -5,11 +5,8 @@ private:
 
 
 public:
-	Field(sf::RenderWindow* windowToLink, sf::Vector2f position, const sf::Texture& texture) 
-		: Entity(windowToLink, position)
-	{
-		sprite.setTexture(texture);
-	}
+	Field(sf::RenderWindow* window, sf::Vector2f position, const sf::Texture& texture) 
+		: Entity(window, position, texture) {}
 
 	void draw();
 };

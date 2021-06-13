@@ -1,9 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
 #include "ResourceHolder.hpp"
 #include "TexturesID.h"
 
 #include "Field.h"
+#include "TalesBase.h"
 
 class Game {
 private:
@@ -12,6 +15,9 @@ private:
 
 	sf::Sprite background;
 	Field* field;
+	TalesBase* base;
+
+	TaleType activeTale;
 
 public:
 	Game();
@@ -20,6 +26,8 @@ public:
 	void run();
 
 private:
+	void loadAssets();
+
 	void processEvents();
 	void update();
 	void render();
