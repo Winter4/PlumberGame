@@ -11,4 +11,3 @@ public:
 
 	void virtual draw();
 };
-

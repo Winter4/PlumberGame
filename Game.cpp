@@ -7,11 +7,13 @@ void Game::loadAssets()
 	texturesHolder.load(Textures::Tales, "assets/textures/talesTest.png");
 	texturesHolder.load(Textures::TalesBase, "assets/textures/talesBase.png");
 	texturesHolder.load(Textures::Arrow, "assets/textures/arrow.png");
+
+	fontsHolder.load(Fonts::Calibri, "assets/fonts/calibri.ttf");
 }
 
 Game::Game() : window(sf::VideoMode(1400, 900), "PLUMBER")
 {
-	gameOver = false;
+	loose = false;
 
 	loadAssets();
 	window.setFramerateLimit(60);
@@ -19,15 +21,20 @@ Game::Game() : window(sf::VideoMode(1400, 900), "PLUMBER")
 
 	background.setTexture(texturesHolder.get(Textures::Background));
 	entrance.setTexture(texturesHolder.get(Textures::Arrow));
-	enter = (FIELD_LENGTH - 1) * rand() / RAND_MAX + 1;
+	exit.setTexture(texturesHolder.get(Textures::Arrow));
+	int enter = (FIELD_LENGTH - 1) * rand() / RAND_MAX + 1;
+	int out = (FIELD_LENGTH - 1) * rand() / RAND_MAX + 1;
 	entrance.setPosition(400, 15 + enter * TALE_SIZE - TALE_SIZE / 2.f);
+	exit.setPosition(1315, 15 + out * TALE_SIZE - TALE_SIZE / 2.f);
 
-	field = new Field(&window, { 440, 15 }, texturesHolder.get(Textures::Field), texturesHolder.get(Textures::Tales));
+	field = new Field(&window, { 440, 15 }, texturesHolder.get(Textures::Field), texturesHolder.get(Textures::Tales), enter, out);
 	base = new TalesBase(&window, { 30, 500 }, texturesHolder.get(Textures::TalesBase), texturesHolder.get(Textures::Tales));
+	timer = new Timer(&window, fontsHolder.get(Fonts::Calibri));
 }
 
 void Game::run()
 {
+	timer->restart();
 	while (window.isOpen()) {
 		processEvents();
 		update();
@@ -48,11 +55,6 @@ void Game::processEvents()
 		window.close();
 		break;
 
-	case sf::Event::KeyPressed:
-		if (event.key.code == sf::Keyboard::Enter)
-			gameOver = field->flowWater(enter);
-		break;
-
 	case sf::Event::MouseButtonPressed:
 		if (event.key.code == sf::Mouse::Left) {
 			field->processMouseClick(sf::Mouse::getPosition(window), baseActiveTale);
@@ -67,10 +69,36 @@ void Game::processEvents()
 
 void Game::update()
 {
+	if (timer->getTime() <= 0) {
+		if (field->checkWin()) timer->end("You loose :(");
+		else timer->end("You win!");
+		render();
+
+		sf::Event event;
+		while (true) {
+			if (window.pollEvent(event)) {
+				if (event.type == sf::Event::Closed)
+					window.close();
+
+				if (event.type == sf::Event::KeyPressed)
+					break;
+			}
+		}
+		window.close();
+	}
+
+	if (timer->getElapsedTime() >= sf::seconds(1)) {
+		timer->substractSecond();
+		timer->restart();
+	}
+
 	base->highlightTale(baseActiveTale);
 	std::cout << baseActiveTale;
 
-	if (gameOver) window.close();
+	if (loose) {
+		//system("pause");
+		window.close();
+	}
 }
 
 void Game::render()
@@ -81,11 +109,14 @@ void Game::render()
 	field->draw();
 	base->draw();
 	window.draw(entrance);
+	window.draw(exit);
+	timer->draw();
 
 	window.display();
 }
 
 Game::~Game()
 {
-
+	delete field;
+	delete base;
 }

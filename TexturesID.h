@@ -10,6 +10,12 @@ namespace Textures {
 	};
 }
 
+namespace Fonts {
+	enum ID {
+		Calibri
+	};
+}
+
 	enum TaleType {
 		NONE,
 		Straight,

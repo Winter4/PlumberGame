@@ -106,3 +106,9 @@ bool Tale::connected(Side side)
 
 	return result;
 }
+
+bool Tale::isWatered() { return watered; }
+void Tale::fill() { 
+	watered = true; 
+	sprite.setColor(sf::Color::Blue);
+}

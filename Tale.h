@@ -8,11 +8,13 @@ class Tale : public Entity {
 private:
 	bool active;
 	int exits[2][2];
+	bool watered;
 
 public:
 	Tale(sf::RenderWindow* window, sf::Vector2f position, const sf::Texture& texture, TaleType taleType)
 		: Entity(window, position, texture)
 	{
+		watered = false;
 		setTale(taleType);
 	}
 
@@ -23,5 +25,7 @@ public:
 	bool isActive();
 	void rotate();
 	bool connected(Side side);
+	bool isWatered();
+	void fill();
 };
 

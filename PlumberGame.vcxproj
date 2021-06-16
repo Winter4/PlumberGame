@@ -151,15 +151,18 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tale.cpp" />
     <ClCompile Include="TalesBase.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="ResourceHolder.hpp" />
     <ClInclude Include="Tale.h" />
     <ClInclude Include="TalesBase.h" />
     <ClInclude Include="TexturesID.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

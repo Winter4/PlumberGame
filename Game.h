@@ -7,22 +7,25 @@
 
 #include "Field.h"
 #include "TalesBase.h"
+#include "Timer.h"
 
 class Game {
 private:
 	sf::RenderWindow window;
 	ResourceHolder<sf::Texture, Textures::ID> texturesHolder;
+	ResourceHolder<sf::Font, Fonts::ID> fontsHolder;
+
 
 	sf::Sprite background;
 	Field* field;
 	TalesBase* base;
+	Timer* timer;
 
 	sf::Sprite entrance;
 	sf::Sprite exit;
 
-	int enter;
 	TaleType baseActiveTale;
-	bool gameOver;
+	bool loose;
 
 public:
 	Game();
