@@ -3,14 +3,9 @@
 Timer::Timer(sf::RenderWindow* window, const sf::Font& font)
 {
 	this->window = window;
-	over = false;
-
-	text.setPosition(sf::Vector2f(170, 200));
-	text.setFillColor(sf::Color::Black);
 	text.setFont(font);
-	text.setCharacterSize(72);
-
-	time = 60;
+	reset();
+	
 }
 
 void Timer::substractSecond()
@@ -18,8 +13,15 @@ void Timer::substractSecond()
 	time--;
 }
 
-void Timer::refresh()
+void Timer::reset()
 {
+	over = false;
+
+	text.setPosition(sf::Vector2f(100, 200));
+	text.setFillColor(sf::Color::Black);
+	
+	text.setCharacterSize(72);
+
 	time = 60;
 }
 
@@ -40,7 +42,7 @@ short Timer::getTime()
 
 void Timer::draw()
 {
-	if (!over) text.setString(std::to_string(time));
+	if (!over) text.setString("     " + std::to_string(time) + "\nR to skip");
 
 	if (time <= 10) text.setFillColor(sf::Color::Red);
 	else text.setFillColor(sf::Color::Black);
@@ -51,5 +53,11 @@ void Timer::end(const std::string& ending)
 {
 	text.setString(ending);
 	over = true;
-	text.move({ -100, 0 });
+	text.move({ -50, 0 });
+	text.setCharacterSize(40);
+}
+
+void Timer::end()
+{
+	time = 1;
 }

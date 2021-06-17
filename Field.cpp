@@ -91,6 +91,13 @@ bool Field::checkTale(sf::Vector2i tale, Side enterSide)
 	return false;
 }
 
+void Field::reset()
+{
+	for (int i = 0; i < FIELD_LENGTH; i++)
+		for (int j = 0; j < FIELD_LENGTH; j++)
+			if (tales[i][j]->isActive()) tales[i][j]->setTale(TaleType::NONE);
+}
+
 Field::~Field()
 {
 	for (int i = 0; i < FIELD_LENGTH; i++) {

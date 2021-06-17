@@ -34,6 +34,7 @@ public:
 	void draw();
 	void processMouseClick(sf::Vector2i mousePosition, TaleType baseActiveTale);
 	bool checkWin();
+	void reset();
 
 private:
 	bool checkTale(sf::Vector2i tale, Side enter);

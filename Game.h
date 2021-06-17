@@ -39,5 +39,7 @@ private:
 	void processEvents();
 	void update();
 	void render();
+
+	void reset();
 };
 

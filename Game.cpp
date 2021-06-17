@@ -24,6 +24,7 @@ Game::Game() : window(sf::VideoMode(1400, 900), "PLUMBER")
 	exit.setTexture(texturesHolder.get(Textures::Arrow));
 	int enter = (FIELD_LENGTH - 1) * rand() / RAND_MAX + 1;
 	int out = (FIELD_LENGTH - 1) * rand() / RAND_MAX + 1;
+
 	entrance.setPosition(400, 15 + enter * TALE_SIZE - TALE_SIZE / 2.f);
 	exit.setPosition(1315, 15 + out * TALE_SIZE - TALE_SIZE / 2.f);
 
@@ -55,6 +56,11 @@ void Game::processEvents()
 		window.close();
 		break;
 
+	case sf::Event::KeyPressed:
+		if (event.key.code == sf::Keyboard::R)
+			timer->end();
+		break;
+
 	case sf::Event::MouseButtonPressed:
 		if (event.key.code == sf::Mouse::Left) {
 			field->processMouseClick(sf::Mouse::getPosition(window), baseActiveTale);
@@ -70,21 +76,28 @@ void Game::processEvents()
 void Game::update()
 {
 	if (timer->getTime() <= 0) {
-		if (field->checkWin()) timer->end("You loose :(");
-		else timer->end("You win!");
+		std::string text;
+		text = field->checkWin() ? "You loose :(" : "You win!";
+		text += "\nPress R to restart\nPress any key to exit";
+		timer->end(text);
 		render();
 
 		sf::Event event;
-		while (true) {
-			if (window.pollEvent(event)) {
-				if (event.type == sf::Event::Closed)
-					window.close();
+		bool loop = true;
+		while (loop) {
+			window.pollEvent(event);
+			switch (event.type) {
+			case sf::Event::Closed:
+				window.close();
 
-				if (event.type == sf::Event::KeyPressed)
-					break;
+			case sf::Event::KeyPressed:
+				if (event.key.code == sf::Keyboard::R)
+					reset();
+				else window.close();
+				loop = false;
+				break;
 			}
 		}
-		window.close();
 	}
 
 	if (timer->getElapsedTime() >= sf::seconds(1)) {
@@ -113,6 +126,12 @@ void Game::render()
 	timer->draw();
 
 	window.display();
+}
+
+void Game::reset()
+{
+	field->reset();
+	timer->reset();
 }
 
 Game::~Game()

@@ -15,10 +15,11 @@ public:
 	Timer(sf::RenderWindow* window, const sf::Font& font);
 
 	void substractSecond();
-	void refresh();
+	void reset();
 	sf::Time getElapsedTime();
 	void restart();
 	short getTime();
 	void draw();
 	void end(const std::string& text);
+	void end();
 };

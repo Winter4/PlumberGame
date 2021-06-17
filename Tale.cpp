@@ -22,6 +22,8 @@ void Tale::setTale(TaleType tale)
 	switch (tale) {
 	case TaleType::NONE:
 		active = false;
+		watered = false;
+
 		exits[0][0] = 0;
 		exits[0][1] = 0;
 		exits[1][0] = 0;
@@ -65,6 +67,7 @@ void Tale::setTale(TaleType tale)
 	sf::FloatRect rect = sprite.getLocalBounds();
 	sprite.setOrigin(rect.left + rect.width / 2.f, rect.top + rect.height / 2.f);
 	rect = sprite.getLocalBounds();
+	sprite.setRotation(0);
 }
 
 bool Tale::isActive() { return active; }
