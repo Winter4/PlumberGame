@@ -2,20 +2,24 @@
 
 void Tale::draw()
 {
-	if (active) Entity::draw();
+	if (active) TexturedEntity::draw();
 }
 
+// содержит ли клеточка курсор
 bool Tale::contains(sf::Vector2i mousePosition)
 {
 	return sprite.getGlobalBounds().contains(sf::Vector2f(mousePosition));
 }
 
+// подсветить клетку
 void Tale::highlight(bool state)
 {
 	if (state) sprite.setColor(sf::Color::Green);
 	else sprite.setColor(sf::Color::White);
 }
 
+// поставить трубу
+// exits - наличие выходов
 void Tale::setTale(TaleType tale)
 {
 	active = true;
@@ -24,10 +28,15 @@ void Tale::setTale(TaleType tale)
 		active = false;
 		watered = false;
 
-		exits[0][0] = 0;
-		exits[0][1] = 0;
-		exits[1][0] = 0;
-		exits[1][1] = 0;
+		exits[0][0] = 0; // лево
+		exits[0][1] = 0; // верх
+		exits[1][0] = 0; // низ
+		exits[1][1] = 0; // право
+
+		// выбираем для спрайта прямоугольный кусор текстуры с координатами ЛВ угла (0; 0)
+		// и шириной и высотой TALE_SIZE
+		// для TaleType::NONE не важен какой именно квадрат, важен размер, чтобы правильно обработать
+		// нажатие мыши по пустой клетке
 		sprite.setTextureRect(sf::IntRect(0, 0, TALE_SIZE, TALE_SIZE));
 		break;
 
@@ -64,14 +73,18 @@ void Tale::setTale(TaleType tale)
 		break;
 	}
 
+	// ставим центр в центр 
 	sf::FloatRect rect = sprite.getLocalBounds();
 	sprite.setOrigin(rect.left + rect.width / 2.f, rect.top + rect.height / 2.f);
 	rect = sprite.getLocalBounds();
+
+	// убираем вращения
 	sprite.setRotation(0);
 }
 
 bool Tale::isActive() { return active; }
 
+// повернуть на 90 градусов
 void Tale::rotate()
 {
 	sprite.rotate(90.f);
@@ -85,6 +98,7 @@ void Tale::rotate()
 	exits[0][1] = tmp;
 }
 
+// проверяет, есть ли выход с указанной стороны
 bool Tale::connected(Side side)
 {
 	bool result = false;
@@ -111,6 +125,8 @@ bool Tale::connected(Side side)
 }
 
 bool Tale::isWatered() { return watered; }
+
+// налить водички
 void Tale::fill() { 
 	watered = true; 
 	sprite.setColor(sf::Color::Blue);

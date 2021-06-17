@@ -1,5 +1,6 @@
 #pragma once
 
+// идентификаторы текстур
 namespace Textures {
 	enum ID {
 		Background,
@@ -10,12 +11,14 @@ namespace Textures {
 	};
 }
 
+// идентификаторы шрифтов
 namespace Fonts {
 	enum ID {
 		Calibri
 	};
 }
 
+// типы тайлов
 	enum TaleType {
 		NONE,
 		Straight,
@@ -24,6 +27,7 @@ namespace Fonts {
 		X
 	};
 
+	// стороны трубы
 	enum Side {
 		Left,
 		Top,
