@@ -11,7 +11,7 @@ void Timer::reset()
 {
 	over = false;
 
-	text.setPosition(sf::Vector2f(100, 200));
+	text.setPosition(sf::Vector2f(60, 200));
 	text.setFillColor(sf::Color::Black);
 	
 	text.setCharacterSize(72);
@@ -53,7 +53,7 @@ void Timer::end(const std::string& ending)
 {
 	text.setString(ending);
 	over = true;
-	text.move({ -50, 0 });
+	text.move({ -20, 0 });
 	text.setCharacterSize(40);
 }
 
