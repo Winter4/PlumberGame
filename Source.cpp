@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Game.h"
+#include "Headers/Game.h"
 #include <time.h>
 
 int main()

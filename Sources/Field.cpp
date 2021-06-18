@@ -1,4 +1,4 @@
-#include "Field.h"
+#include "../Headers/Field.h"
 
 // отрисовать спрайт поля и все поставленные трубы
 void Field::draw()

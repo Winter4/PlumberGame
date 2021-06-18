@@ -149,27 +149,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Field.cpp" />
-    <ClCompile Include="FontedEntity.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Tale.cpp" />
-    <ClCompile Include="TalesBase.cpp" />
-    <ClCompile Include="TexturedEntity.cpp" />
-    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Sources\Entity.cpp" />
+    <ClCompile Include="Sources\Field.cpp" />
+    <ClCompile Include="Sources\FontedEntity.cpp" />
+    <ClCompile Include="Sources\Game.cpp" />
+    <ClCompile Include="Sources\Tale.cpp" />
+    <ClCompile Include="Sources\TalesBase.cpp" />
+    <ClCompile Include="Sources\TexturedEntity.cpp" />
+    <ClCompile Include="Sources\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FontedEntity.hpp" />
-    <ClInclude Include="TexturedEntity.hpp" />
-    <ClInclude Include="Entity.hpp" />
-    <ClInclude Include="Field.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="ResourceHolder.hpp" />
-    <ClInclude Include="Tale.h" />
-    <ClInclude Include="TalesBase.h" />
-    <ClInclude Include="TexturesID.h" />
-    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Headers\Entity.hpp" />
+    <ClInclude Include="Headers\Field.h" />
+    <ClInclude Include="Headers\FontedEntity.hpp" />
+    <ClInclude Include="Headers\Game.h" />
+    <ClInclude Include="Headers\ResourceHolder.hpp" />
+    <ClInclude Include="Headers\Tale.h" />
+    <ClInclude Include="Headers\TalesBase.h" />
+    <ClInclude Include="Headers\TexturedEntity.hpp" />
+    <ClInclude Include="Headers\TexturesID.h" />
+    <ClInclude Include="Headers\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

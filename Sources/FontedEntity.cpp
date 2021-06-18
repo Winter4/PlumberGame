@@ -1,5 +1,5 @@
 #pragma once
-#include "FontedEntity.hpp"
+#include "../Headers/FontedEntity.hpp"
 
 FontedEntity::FontedEntity(sf::RenderWindow* window, sf::Vector2f position, const sf::Font& font)
 	: Entity(window)

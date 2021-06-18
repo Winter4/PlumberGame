@@ -1,4 +1,4 @@
-#include "Timer.h"
+#include "../Headers/Timer.h"
 
 // убрать секунду по счетчика
 void Timer::substractSecond()

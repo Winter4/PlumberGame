@@ -1,4 +1,4 @@
-#include "Tale.h"
+#include "../Headers/Tale.h"
 
 void Tale::draw()
 {

@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "../Headers/Game.h"
 
 // загрузить ассеты (ресурсы)
 void Game::loadAssets()

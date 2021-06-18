@@ -1,5 +1,5 @@
 #pragma once
-#include "TexturedEntity.hpp"
+#include "../Headers/TexturedEntity.hpp"
 
 TexturedEntity::TexturedEntity(sf::RenderWindow* window, sf::Vector2f position, const sf::Texture& texture)
 	: Entity(window)
